@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/pretty.css">
+</head>
+<body>
+<form th:action="@{/create}" th:object="${record}" method="post">
+    <table class="table">
+        <tr><td>Name</td><td><input type="text" th:field="*{name}"/></td></tr>
+        <tr><td>vk.com profile</td><td><input type="text" th:field="*{vkRef}"/></td></tr>
+        <tr><td>fb.com profile</td><td><input type="text" th:field="*{fbRef}"/></td></tr>
+        <tr><td>skype login</td><td><input type="text" th:field="*{skype}"/></td></tr>
+        <tr><td>telegram</td><td><input type="text" th:field="*{telegram}"/></td></tr>
+        <tr><td>whatsapp</td><td><input type="text" th:field="*{whatsapp}"/></td></tr>
+        <tr><td>phone type</td><td><input type="text" name="type"/></td></tr>
+        <tr><td>phone number</td><td><input type="text" name="number"/></td></tr>
+        <tr><td colspan="2"><input type="submit" value="Submit"/></td></tr>
+    </table>
+</form>
+</body>
+</html>

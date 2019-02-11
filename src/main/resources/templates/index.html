@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <base href="/">
+    <title>All</title>
+    <link rel="stylesheet" href="/pretty.css">
+</head>
+<body>
+<div class="btnsLine">
+    <a class="frmBtn" href="/create">Create</a>
+</div>
+
+<!-- All fields -->
+<!--<div>-->
+<!--<form class="btnsLine" th:action="@{/findRecord}" method="post">-->
+<!--<input type="text" name="name" placeholder="Name">-->
+<!--<input type="text" name="vkRef" placeholder="vk.com">-->
+<!--<input type="text" name="fbRef" placeholder="facebook.com">-->
+<!--<input type="text" name="skype" placeholder="Skype">-->
+<!--<input type="text" name="telegram" placeholder="Telegram">-->
+<!--<input type="text" name="whatsapp" placeholder="WhatsApp">-->
+<!--<input type="text" name="phone" placeholder="Phone">-->
+<!--<input class="frmBtn orange" type="submit" value="Filter"/>-->
+<!--</form>-->
+<!--</div>-->
+
+<!-- One field -->
+<div>
+    <form th:action="@{/findRecord}" method="post">
+        <input type="text" name="searchField" placeholder="search"/>
+        <input class="frmBtn orange" type="submit" value="Search"/>
+    </form>
+</div>
+<div class="table">
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>vk.com</th>
+            <th>facebook.com</th>
+            <th>Skype</th>
+            <th>Telegram</th>
+            <th>WhatsApp</th>
+            <th>Phones</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="record : ${records}">
+            <tr>
+                <td th:text="${record.name}"></td>
+                <td><a th:href="@{${record.vkRef}}" th:text="${record.vkRef}"></a></td>
+                <td><a th:href="@{${record.fbRef}}" th:text="${record.fbRef}"></a></td>
+                <td th:text="${record.skype}"></td>
+                <td th:text="${record.telegram}"></td>
+                <td th:text="${record.whatsapp}"></td>
+                <td>
+                    <th:block th:each="phone : ${record.phones}">
+                        <p th:text="${phone.type.isEmpty()} ? ${phone.number} : ${phone.type} + ': ' + ${phone.number}"></p>
+                    </th:block>
+                </td>
+
+                <td><a class="fn edit" th:href="@{/update(id=${record.id})}" title="Edit">&rsaquo;</a></td>
+                <td><a class="fn delete" th:href="@{/delete(id=${record.id})}" title="Delete">&times;</a></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
